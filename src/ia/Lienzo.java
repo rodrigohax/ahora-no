@@ -16,7 +16,8 @@ public class Lienzo extends Canvas implements Constantes {
     public Laberinto laberinto;
     public Image fondo;
 
-    public Vehiculo auto, auto2;
+    public Vehiculo auto, auto2, auto3, auto4;
+    public Micro micro;
     public Peaton peaton, peaton2;
     public Jugador jugador;
     public Timer lanzadorTareas;
@@ -27,17 +28,21 @@ public class Lienzo extends Canvas implements Constantes {
     public Lienzo() {
         Point p1 = new Point(1, 1);
         Point p2 = new Point(19, 7);
-        
-        //Point p3 = new Point(10, 12);
-        //Point p4 = new Point(33, 17);
-        
-        Point p5 = new Point(2, 2);
-        Point p6 = new Point(18, 6);
+
+        Point p3 = new Point(30, 15);
+        Point p4 = new Point(1, 1);
+
+        Point p5 = new Point(2, 1);
+        Point p6 = new Point(20, 10);
         laberinto = new Laberinto(this);
         auto = new Vehiculo(laberinto, p1, p2);
-        //auto2 = new Vehiculo(laberinto, p3, p4);
-        peaton = new Peaton(laberinto, p5, p6);
+        auto2 = new Vehiculo(laberinto, new Point(7, 7), new Point(25, 13));
+        auto3 = new Vehiculo(laberinto, new Point(1, 7), new Point(7, 13));
+        auto4 = new Vehiculo(laberinto, new Point(6, 5), new Point(4, 4));
+
+        micro = new Micro(laberinto, new Point(19, 1), new Point(25, 13));
         jugador = new Jugador(laberinto);
+
         try {
             fondo = ImageIO.read(new File("images/fondo.png"));
         } catch (IOException e) {
@@ -53,9 +58,12 @@ public class Lienzo extends Canvas implements Constantes {
             }
         });
         lanzadorTareas = new Timer();
-        lanzadorTareas.scheduleAtFixedRate(auto, 0, 500);
-//        lanzadorTareas.scheduleAtFixedRate(auto2, 0, 400);
-        lanzadorTareas.scheduleAtFixedRate(peaton, 0, 1300);
+        lanzadorTareas.scheduleAtFixedRate(auto, 0, 1500);
+        lanzadorTareas.scheduleAtFixedRate(auto2, 0, 1100);
+        lanzadorTareas.scheduleAtFixedRate(auto3, 0, 1300);
+        lanzadorTareas.scheduleAtFixedRate(auto4, 0, 1300);
+        lanzadorTareas.scheduleAtFixedRate(micro, 0, 1100);
+//        lanzadorTareas.scheduleAtFixedRate(peaton2,0,400);
     }
 
     @Override

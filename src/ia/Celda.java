@@ -1,5 +1,7 @@
 package ia;
 
+import static java.awt.Color.BLUE;
+import static java.awt.Color.GREEN;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -66,11 +68,19 @@ public class Celda extends JComponent implements Constantes {
                 g.drawImage(peaton, x, y, this);
                 break;
             case CALLE:
-               // g.setColor(COLORAMARILLO);
-               // g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+                // g.setColor(COLORAMARILLO);
+                // g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
             case PORTAL:
                 g.setColor(COLORAMARILLO);
+                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+                break;
+            case MICRO:
+                g.setColor(GREEN);
+                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+                break;
+            case PARADA:
+                g.setColor(BLUE);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
         }

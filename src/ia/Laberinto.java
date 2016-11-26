@@ -7,7 +7,6 @@ public class Laberinto extends JComponent implements Constantes {
 
     public Celda[][] celdas;
     public Lienzo lienzoPadre;
-    public Jugador jugador;
 
     public Laberinto(Lienzo lienzoPadre) {
         this.lienzoPadre = lienzoPadre;
@@ -59,6 +58,13 @@ public class Laberinto extends JComponent implements Constantes {
         for (int i = 0; i < 30; i++) {
             celdas[i][13].tipoCelda = CALLE;
         }
+
+        celdas[20][3].tipoCelda = PARADA;
+        celdas[20][9].tipoCelda = PARADA;
+
+        celdas[26][3].tipoCelda = PARADA;
+        celdas[26][9].tipoCelda = PARADA;
+        //    celdas[26][2].tipoCelda = PORTAL;
         this.setSize(SIZE_WIDTH, SIZE_HEIGHT);
     }
 

@@ -3,7 +3,7 @@ package ia;
 import java.awt.Point;
 import java.util.TimerTask;
 
-public class Peaton extends TimerTask implements Constantes {
+public class Peaton implements Constantes {
 
     public Laberinto laberinto;
     public Celda peaton, celdaMovimiento;
@@ -19,7 +19,7 @@ public class Peaton extends TimerTask implements Constantes {
         peaton = new Celda(p1.x, p1.y, PEATON);
     }
 
-    private void moverPeaton() {
+    public void moverPeaton() {
         if (celdaMovimiento.x == p2.x && celdaMovimiento.y < p3.y && celdaMovimiento.y >= p2.y) {
             if (noHayPared(celdaMovimiento.x, celdaMovimiento.y + 1)) {
                 moverAbajo();
@@ -82,10 +82,6 @@ public class Peaton extends TimerTask implements Constantes {
         return laberinto.celdas[x][y].tipoCelda != VEHICULO
                 && laberinto.celdas[x][y].tipoCelda != JUGADOR;
     }
-
-    @Override
-    public void run() {
-        moverPeaton();
-        laberinto.lienzoPadre.repaint();
-    }
 }
+
+

@@ -48,7 +48,7 @@ public class Jugador implements Constantes {
     }
 
     private void moverCeldaAbajo() {
-        if (jugador.y + 1 < N_CELDAS_ALTO-1) {
+        if (jugador.y + 1 < N_CELDAS_ALTO - 1) {
             if (noHayPared(jugador.x, jugador.y + 1) && noVieneVehiculo(jugador.x, jugador.y, 'D')) {
                 avanzar(jugador.x, jugador.y + 1, 'D');
             }
@@ -64,7 +64,7 @@ public class Jugador implements Constantes {
     }
 
     private void moverCeldaDerecha() {
-        if (jugador.x + 1 < N_CELDAS_ANCHO-1) {
+        if (jugador.x + 1 < N_CELDAS_ANCHO - 1) {
             if (noHayPared(jugador.x + 1, jugador.y) && noVieneVehiculo(jugador.x, jugador.y, 'R')) {
                 avanzar(jugador.x + 1, jugador.y, 'R');
             }
@@ -75,6 +75,11 @@ public class Jugador implements Constantes {
         return laberinto.celdas[x][y].tipoCelda != OBSTACULO
                 && laberinto.celdas[x][y].tipoCelda != VEHICULO
                 && laberinto.celdas[x][y].tipoCelda != PEATON;
+    }
+
+    private boolean esPortal(int x, int y) {
+        System.out.println("PORTAL");
+        return laberinto.celdas[x][y].tipoCelda == PORTAL;
     }
 
     private boolean noVieneVehiculo(int x, int y, char mov) {
@@ -140,6 +145,7 @@ public class Jugador implements Constantes {
 
     private void avanzar(int x, int y, char mov) {
         char temp;
+        esPortal(x,y);
         switch (mov) {
             case 'D':
                 temp = celdaMovimiento.tipoCelda;
@@ -176,7 +182,6 @@ public class Jugador implements Constantes {
                 break;
         }
     }
-
     /*@Override
     public void run() {
         laberinto.lienzoPadre.repaint();
