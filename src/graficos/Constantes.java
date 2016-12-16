@@ -1,4 +1,4 @@
-package ia;
+package graficos;
 
 import java.awt.Color;
 import java.util.Random;

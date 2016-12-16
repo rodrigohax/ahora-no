@@ -1,5 +1,6 @@
-package ia;
+package graficos;
 
+import inteligencia.Estado;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -64,6 +65,14 @@ public class Lienzo extends Canvas implements Constantes {
         lanzadorTareas.scheduleAtFixedRate(auto4, 0, 1300);
         lanzadorTareas.scheduleAtFixedRate(micro, 0, 1100);
 //        lanzadorTareas.scheduleAtFixedRate(peaton2,0,400);
+
+        jugador.inteligencia.destinos.add(new Estado(20, 3, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(20, 9, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(26, 3, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(26, 9, 'N', null));
+        
+        lanzadorTareas.scheduleAtFixedRate(jugador.inteligencia, 0, 300);
+
     }
 
     @Override

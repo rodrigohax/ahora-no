@@ -1,4 +1,4 @@
-package ia;
+package graficos;
 
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
@@ -20,7 +20,7 @@ public class Celda extends JComponent implements Constantes {
     //nuevos atributos para manejar imagenes
     public BufferedImage jugador, obstaculo, camino, vehiculo, portal;
     public BufferedImage edificio, acera, carretera, peaton;
-
+    public int nPeatones;
     //constructor, inicializa los atributos
     public Celda(int x, int y, char tipo) {
         this.x = x;
@@ -44,6 +44,13 @@ public class Celda extends JComponent implements Constantes {
             System.out.println(e.toString());
         }
     }
+    
+        public Celda(int x, int y, char tipo, int nPeatones) {
+        this.x = x;
+        this.y = y;
+        this.tipoCelda = tipo;
+        this.nPeatones = nPeatones;
+        }
 
     @Override
     public void update(Graphics g) {
@@ -53,6 +60,7 @@ public class Celda extends JComponent implements Constantes {
                 break;
             case OBSTACULO:
                 g.drawImage(obstaculo, x, y, this);
+                g.drawString(Integer.toString(nPeatones), x+10, y+10);
                 break;
             case CAMINO:
                 //g.setColor(COLORGRIS);

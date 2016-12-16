@@ -1,4 +1,4 @@
-package ia;
+package graficos;
 
 import java.awt.Point;
 import java.util.ArrayList;

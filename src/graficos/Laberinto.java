@@ -1,4 +1,4 @@
-package ia;
+package graficos;
 
 import java.awt.Graphics;
 import javax.swing.JComponent;
@@ -59,11 +59,11 @@ public class Laberinto extends JComponent implements Constantes {
             celdas[i][13].tipoCelda = CALLE;
         }
 
-        celdas[20][3].tipoCelda = PARADA;
-        celdas[20][9].tipoCelda = PARADA;
+        celdas[20][3].tipoCelda = PORTAL;
+        celdas[20][9].tipoCelda = PORTAL;
 
-        celdas[26][3].tipoCelda = PARADA;
-        celdas[26][9].tipoCelda = PARADA;
+        celdas[26][3].tipoCelda = PORTAL;
+        celdas[26][9].tipoCelda = PORTAL;
         //    celdas[26][2].tipoCelda = PORTAL;
         this.setSize(SIZE_WIDTH, SIZE_HEIGHT);
     }
@@ -83,9 +83,11 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     private void crearEdificio(int x1, int x2, int y1, int y2) {
+        int random = (int)Math.floor(Math.random()*(101));
         for (int i = x1; i < x2; i++) {
             for (int j = y1; j < y2; j++) {
                 celdas[i][j].tipoCelda = OBSTACULO;
+                celdas[i][j].nPeatones = random;
             }
         }
     }

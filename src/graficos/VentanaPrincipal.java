@@ -1,4 +1,4 @@
-package ia;
+package graficos;
 
 import javax.swing.JFrame;
 

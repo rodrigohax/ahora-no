@@ -1,8 +1,9 @@
-package ia;
+package graficos;
 
-import static ia.Constantes.N_CELDAS_ALTO;
-import static ia.Constantes.N_CELDAS_ANCHO;
-import static ia.Constantes.TAMANIO_CELDA;
+import static graficos.Constantes.N_CELDAS_ALTO;
+import static graficos.Constantes.N_CELDAS_ANCHO;
+import static graficos.Constantes.TAMANIO_CELDA;
+import inteligencia.Busqueda;
 import java.awt.event.KeyEvent;
 import java.util.TimerTask;
 
@@ -10,12 +11,14 @@ public class Jugador implements Constantes {
 
     public Laberinto laberinto;
     public Celda jugador, celdaMovimiento;
+    public Busqueda inteligencia;
 
     public Jugador(Laberinto laberinto) {
         this.laberinto = laberinto;
         celdaMovimiento = new Celda(0, 0, laberinto.celdas[0][0].tipoCelda);
         jugador = new Celda(0, 0, JUGADOR);
         laberinto.celdas[jugador.x][jugador.y].tipoCelda = JUGADOR;
+        inteligencia = new Busqueda(laberinto, this);
     }
 
     void moverCelda(KeyEvent evento) {
@@ -39,7 +42,7 @@ public class Jugador implements Constantes {
         }
     }
 
-    private void moverCeldaArriba() {
+    public void moverCeldaArriba() {
         if (jugador.y > 0) {
             if (noHayPared(jugador.x, jugador.y - 1) && noVieneVehiculo(jugador.x, jugador.y, 'U')) {
                 avanzar(jugador.x, jugador.y - 1, 'U');
@@ -47,7 +50,7 @@ public class Jugador implements Constantes {
         }
     }
 
-    private void moverCeldaAbajo() {
+    public void moverCeldaAbajo() {
         if (jugador.y + 1 < N_CELDAS_ALTO - 1) {
             if (noHayPared(jugador.x, jugador.y + 1) && noVieneVehiculo(jugador.x, jugador.y, 'D')) {
                 avanzar(jugador.x, jugador.y + 1, 'D');
@@ -55,7 +58,7 @@ public class Jugador implements Constantes {
         }
     }
 
-    private void moverCeldaIzquierda() {
+    public void moverCeldaIzquierda() {
         if (jugador.x > 0) {
             if (noHayPared(jugador.x - 1, jugador.y) && noVieneVehiculo(jugador.x, jugador.y, 'L')) {
                 avanzar(jugador.x - 1, jugador.y, 'L');
@@ -63,7 +66,7 @@ public class Jugador implements Constantes {
         }
     }
 
-    private void moverCeldaDerecha() {
+    public void moverCeldaDerecha() {
         if (jugador.x + 1 < N_CELDAS_ANCHO - 1) {
             if (noHayPared(jugador.x + 1, jugador.y) && noVieneVehiculo(jugador.x, jugador.y, 'R')) {
                 avanzar(jugador.x + 1, jugador.y, 'R');
@@ -71,18 +74,18 @@ public class Jugador implements Constantes {
         }
     }
 
-    private boolean noHayPared(int x, int y) {
+    public boolean noHayPared(int x, int y) {
         return laberinto.celdas[x][y].tipoCelda != OBSTACULO
                 && laberinto.celdas[x][y].tipoCelda != VEHICULO
                 && laberinto.celdas[x][y].tipoCelda != PEATON;
     }
 
-    private boolean esPortal(int x, int y) {
+    public boolean esPortal(int x, int y) {
         System.out.println("PORTAL");
         return laberinto.celdas[x][y].tipoCelda == PORTAL;
     }
 
-    private boolean noVieneVehiculo(int x, int y, char mov) {
+    public boolean noVieneVehiculo(int x, int y, char mov) {
         if (celdaMovimiento.tipoCelda == CAMINO) {
             System.out.println("Esta en camino");
             switch (mov) {
@@ -143,9 +146,9 @@ public class Jugador implements Constantes {
         return true;
     }
 
-    private void avanzar(int x, int y, char mov) {
+    public void avanzar(int x, int y, char mov) {
         char temp;
-        esPortal(x,y);
+        esPortal(x, y);
         switch (mov) {
             case 'D':
                 temp = celdaMovimiento.tipoCelda;
