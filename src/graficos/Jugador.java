@@ -18,7 +18,7 @@ public class Jugador implements Constantes {
         celdaMovimiento = new Celda(0, 0, laberinto.celdas[0][0].tipoCelda);
         jugador = new Celda(0, 0, JUGADOR);
         laberinto.celdas[jugador.x][jugador.y].tipoCelda = JUGADOR;
-        inteligencia = new Busqueda(laberinto, this);
+        inteligencia = new Busqueda(laberinto);
     }
 
     void moverCelda(KeyEvent evento) {

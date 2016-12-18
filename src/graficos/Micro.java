@@ -27,7 +27,7 @@ public class Micro extends TimerTask implements Constantes {
         auto = new Celda(p1.x, p1.y, MICRO);
 
         for (int i = 0; i < NUMPEATONES; i++) {
-            xp.x = xp.x + 1;
+            xp.x = xp.x - 1;
             peatones.add(new Peaton(laberinto, xp, yp));
         }
 

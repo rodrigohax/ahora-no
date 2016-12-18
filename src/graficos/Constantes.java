@@ -23,7 +23,7 @@ public interface Constantes {
     public final char CALLE = 'C';
     public final char MICRO = 'X';
     public final char PARADA = 'Y';
-    public final int NUMPEATONES = 5;
+    public final int NUMPEATONES = 1;
     
     public final int ALFA = 150;
     public final Color COLORGRIS = new Color(192, 192, 192, ALFA);
