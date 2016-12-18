@@ -77,11 +77,11 @@ public class Jugador implements Constantes {
     public boolean noHayPared(int x, int y) {
         return laberinto.celdas[x][y].tipoCelda != OBSTACULO
                 && laberinto.celdas[x][y].tipoCelda != VEHICULO
-                && laberinto.celdas[x][y].tipoCelda != PEATON;
+                && laberinto.celdas[x][y].tipoCelda != PEATON
+                && laberinto.celdas[x][y].tipoCelda != CALLE;
     }
 
     public boolean esPortal(int x, int y) {
-        System.out.println("PORTAL");
         return laberinto.celdas[x][y].tipoCelda == PORTAL;
     }
 
@@ -148,7 +148,6 @@ public class Jugador implements Constantes {
 
     public void avanzar(int x, int y, char mov) {
         char temp;
-        esPortal(x, y);
         switch (mov) {
             case 'D':
                 temp = celdaMovimiento.tipoCelda;

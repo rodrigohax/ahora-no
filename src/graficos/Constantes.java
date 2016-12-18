@@ -18,11 +18,12 @@ public interface Constantes {
     public final char VEHICULO = 'H';
     public final char PORTAL = 'R';
     //nuevas constantes
-    public final char EDIFICIO = 'E';    
+    public final char CUADRA= 'E';    
     public final char PEATON = 'P';
     public final char CALLE = 'C';
     public final char MICRO = 'X';
     public final char PARADA = 'Y';
+    public final char PASOPEATONAL = 'Z';
     public final int NUMPEATONES = 1;
     
     public final int ALFA = 150;

@@ -2,6 +2,7 @@ package graficos;
 
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
+import static java.awt.Color.RED;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -55,14 +56,14 @@ public class Celda extends JComponent implements Constantes {
 
     @Override
     public void update(Graphics g) {
-g.drawString(Integer.toString(nPeatones), x + 10, y + 10);
+        g.drawString(Integer.toString(nPeatones), x + 10, y + 10);
         switch (tipoCelda) {
             case JUGADOR:
                 g.drawImage(spriteJugador[indexSprite], x, y, null);
                 break;
             case OBSTACULO:
-               g.drawImage(obstaculo, x, y, this);
-               // 
+                g.drawImage(obstaculo, x, y, this);
+                // 
                 break;
             case CAMINO:
                 //g.setColor(COLORGRIS);
@@ -70,9 +71,6 @@ g.drawString(Integer.toString(nPeatones), x + 10, y + 10);
                 break;
             case VEHICULO:
                 g.drawImage(spriteVehiculo[indexSprite], x, y, this);
-                break;
-            case EDIFICIO:
-                g.drawImage(edificio, x, y, this);
                 break;
             case PEATON:
                 g.drawImage(peaton, x, y, this);
@@ -90,6 +88,12 @@ g.drawString(Integer.toString(nPeatones), x + 10, y + 10);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
             case PARADA:
+                g.setColor(BLUE);
+                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+                break;
+            case PASOPEATONAL:
+                break;
+            case CUADRA:
                 g.setColor(BLUE);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
