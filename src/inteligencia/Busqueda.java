@@ -48,7 +48,6 @@ public class Busqueda extends TimerTask implements Constantes {
         }
 
         while (!colaEstados.isEmpty() && !exito) {
-
             temp = colaEstados.poll();
 
             moverArriba(temp);
@@ -77,11 +76,9 @@ public class Busqueda extends TimerTask implements Constantes {
 
     private void moverArriba(Estado e) {
         if (e.y > 0) {
-            if (laberinto.lienzoPadre.jugador.noHayPared(e.x, e.y - 1)) {
+            if (laberinto.lienzoPadre.jugador.noHayPared(e.x, e.y)) {
                 Estado arriba = new Estado(e.x, e.y - 1, 'U', e);
-                arriba.prioridad = distancia(arriba.x, arriba.y,
-                        laberinto.lienzoPadre.jugador.jugador.x,
-                        laberinto.lienzoPadre.jugador.jugador.y);
+                arriba.prioridad = laberinto.celdas[e.x][e.y - 1].nPeatones;
                 if (!historial.contains(arriba)) {
                     colaEstados.add(arriba);
                     historial.add(arriba);
@@ -98,11 +95,9 @@ public class Busqueda extends TimerTask implements Constantes {
     private void moverAbajo(Estado e) {
 
         if (e.y + 1 < N_CELDAS_ALTO) {
-            if (laberinto.lienzoPadre.jugador.noHayPared(e.x, e.y + 1)) {
+            if (laberinto.lienzoPadre.jugador.noHayPared(e.x, e.y)) {
                 Estado abajo = new Estado(e.x, e.y + 1, 'D', e);
-                abajo.prioridad = distancia(abajo.x, abajo.y,
-                        laberinto.lienzoPadre.jugador.jugador.x,
-                        laberinto.lienzoPadre.jugador.jugador.y);
+                abajo.prioridad = laberinto.celdas[e.x][e.y + 1].nPeatones;
 
                 if (!historial.contains(abajo)) {
                     colaEstados.add(abajo);
@@ -120,11 +115,9 @@ public class Busqueda extends TimerTask implements Constantes {
 
     private void moverIzquierda(Estado e) {
         if (e.x > 0) {
-            if (laberinto.lienzoPadre.jugador.noHayPared(e.x - 1, e.y)) {
+            if (laberinto.lienzoPadre.jugador.noHayPared(e.x, e.y)) {
                 Estado izquierda = new Estado(e.x - 1, e.y, 'L', e);
-                izquierda.prioridad = distancia(izquierda.x, izquierda.y,
-                        laberinto.lienzoPadre.jugador.jugador.x,
-                        laberinto.lienzoPadre.jugador.jugador.y);
+                izquierda.prioridad =laberinto.celdas[e.x-1][e.y].nPeatones;
 
                 if (!historial.contains(izquierda)) {
 
@@ -144,12 +137,9 @@ public class Busqueda extends TimerTask implements Constantes {
     private void moverDerecha(Estado e) {
 
         if (e.x < N_CELDAS_ANCHO - 1) {
-            if (laberinto.lienzoPadre.jugador.noHayPared(e.x + 1, e.y)) {
+            if (laberinto.lienzoPadre.jugador.noHayPared(e.x, e.y)) {
                 Estado derecha = new Estado(e.x + 1, e.y, 'R', e);
-                derecha.prioridad = distancia(derecha.x, derecha.y,
-                        laberinto.lienzoPadre.jugador.jugador.x,
-                        laberinto.lienzoPadre.jugador.jugador.y);
-
+                derecha.prioridad = laberinto.celdas[e.x+1][e.y].nPeatones;
                 if (!historial.contains(derecha)) {
                     colaEstados.add(derecha);
                     historial.add(derecha);
@@ -175,6 +165,7 @@ public class Busqueda extends TimerTask implements Constantes {
 
     @Override
     public synchronized void run() {
+        //   System.out.println(colaEstados.toString());
         if (index_pasos >= 0) {
             switch (pasos.get(index_pasos)) {
                 case 'D':

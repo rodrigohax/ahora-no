@@ -66,7 +66,7 @@ public class Lienzo extends Canvas implements Constantes {
     //   lanzadorTareas.scheduleAtFixedRate(micro, 0, 1100);
 //        lanzadorTareas.scheduleAtFixedRate(peaton2,0,400);
 
-        jugador.inteligencia.buscar(0, 0, 30, 15);
+        jugador.inteligencia.buscar(0, 0, 26, 3);
         jugador.inteligencia.calcularRuta();
         lanzadorTareas.scheduleAtFixedRate(jugador.inteligencia, 0, 300);
 

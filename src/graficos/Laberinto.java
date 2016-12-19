@@ -15,6 +15,7 @@ public class Laberinto extends JComponent implements Constantes {
         for (int i = 0; i < N_CELDAS_ANCHO; i++) {
             for (int j = 0; j < N_CELDAS_ALTO; j++) {
                 celdas[i][j] = new Celda(i + (i * TAMANIO_CELDA), j + (j * TAMANIO_CELDA), CAMINO);
+                celdas[i][j].nPeatones = 999;
             }
         }
         crearEdificio(3, 6, 3, 6);
