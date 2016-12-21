@@ -24,7 +24,8 @@ public interface Constantes {
     public final char MICRO = 'X';
     public final char PARADA = 'Y';
     public final char PASOPEATONAL = 'Z';
-    public final int NUMPEATONES = 1;
+    public final int NPEATONES = 10;
+    public final int PASAJERO = 'A';
     
     public final int ALFA = 150;
     public final Color COLORGRIS = new Color(192, 192, 192, ALFA);

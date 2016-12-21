@@ -27,19 +27,11 @@ public class Lienzo extends Canvas implements Constantes {
     public Image imagenBuffer;
 
     public Lienzo() {
-        Point p1 = new Point(1, 1);
-        Point p2 = new Point(19, 7);
-
-        Point p3 = new Point(30, 15);
-        Point p4 = new Point(1, 1);
-
-        Point p5 = new Point(2, 1);
-        Point p6 = new Point(20, 10);
         laberinto = new Laberinto(this);
-        auto = new Vehiculo(laberinto, p1, p2);
-        auto2 = new Vehiculo(laberinto, new Point(7, 7), new Point(25, 13));
-        auto3 = new Vehiculo(laberinto, new Point(1, 7), new Point(7, 13));
-        auto4 = new Vehiculo(laberinto, new Point(6, 5), new Point(4, 4));
+//        auto = new Vehiculo(laberinto, 29, 1);
+//        auto2 = new Vehiculo(laberinto, new Point(7, 1), new Point(13, 7));
+//        auto3 = new Vehiculo(laberinto, new Point(1, 13), new Point(7, 1));
+//        auto4 = new Vehiculo(laberinto, new Point(6, 5), new Point(4, 4));
 
         micro = new Micro(laberinto, new Point(19, 1), new Point(25, 13));
         jugador = new Jugador(laberinto);
@@ -59,11 +51,11 @@ public class Lienzo extends Canvas implements Constantes {
             }
         });
         lanzadorTareas = new Timer();
-        lanzadorTareas.scheduleAtFixedRate(auto, 0, 1500);
-        lanzadorTareas.scheduleAtFixedRate(auto2, 0, 1100);
-        lanzadorTareas.scheduleAtFixedRate(auto3, 0, 1300);
-        lanzadorTareas.scheduleAtFixedRate(auto4, 0, 1300);
-    //   lanzadorTareas.scheduleAtFixedRate(micro, 0, 1100);
+    //    lanzadorTareas.scheduleAtFixedRate(auto, 0, 100);
+//        lanzadorTareas.scheduleAtFixedRate(auto2, 0, 100);
+       // lanzadorTareas.scheduleAtFixedRate(auto3, 0, 1300);
+        //lanzadorTareas.scheduleAtFixedRate(auto4, 0, 1300);
+      lanzadorTareas.scheduleAtFixedRate(micro, 0, 1100);
 //        lanzadorTareas.scheduleAtFixedRate(peaton2,0,400);
 
         jugador.inteligencia.buscar(0, 0, 26, 3);

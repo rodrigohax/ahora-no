@@ -38,7 +38,10 @@ public class Peaton implements Constantes {
             }
         }
     }
-
+    
+   public void serCalle(){
+         laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y].tipoCelda = CALLE;
+   }
     private void moverAbajo() {
         char temp = celdaMovimiento.tipoCelda;
         celdaMovimiento.tipoCelda = laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y + 1].tipoCelda;

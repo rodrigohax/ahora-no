@@ -15,7 +15,7 @@ public class Laberinto extends JComponent implements Constantes {
         for (int i = 0; i < N_CELDAS_ANCHO; i++) {
             for (int j = 0; j < N_CELDAS_ALTO; j++) {
                 celdas[i][j] = new Celda(i + (i * TAMANIO_CELDA), j + (j * TAMANIO_CELDA), CAMINO);
-                celdas[i][j].nPeatones = 999;
+          //      celdas[i][j].nPeatones = 999;
             }
         }
         crearEdificio(3, 6, 3, 6);
@@ -60,12 +60,14 @@ public class Laberinto extends JComponent implements Constantes {
             celdas[i][13].tipoCelda = CALLE;
         }
 
-        celdas[20][3].tipoCelda = PORTAL;
-        celdas[20][9].tipoCelda = PORTAL;
+        for (int i = 4; i < 30; i = i + 6) {
+            celdas[i][5].tipoCelda = PORTAL;
+        }
 
-        celdas[26][3].tipoCelda = PORTAL;
-        celdas[26][9].tipoCelda = PORTAL;
-        //    celdas[26][2].tipoCelda = PORTAL;
+        for (int i = 4; i < 30; i = i + 6) {
+            celdas[i][11].tipoCelda = PORTAL;
+        }
+
 
         /*
         PASOS PEATONALES HORIZONTALES
@@ -116,7 +118,12 @@ public class Laberinto extends JComponent implements Constantes {
         insertarPeatones(14, 19, 8, 13);
         insertarPeatones(20, 25, 8, 13);
         insertarPeatones(26, 30, 8, 13);
-
+        
+        celdas[20][10].tipoCelda = PARADA;
+        celdas[20][4].tipoCelda = PARADA;
+        
+              celdas[26][10].tipoCelda = PARADA;
+        celdas[26][4].tipoCelda = PARADA;
     }
 
     @Override

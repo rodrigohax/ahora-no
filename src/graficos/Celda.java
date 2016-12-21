@@ -56,7 +56,7 @@ public class Celda extends JComponent implements Constantes {
 
     @Override
     public void update(Graphics g) {
-        g.drawString(Integer.toString(nPeatones), x + 10, y + 10);
+        //   g.drawString(Integer.toString(nPeatones), x + 10, y + 10);
         switch (tipoCelda) {
             case JUGADOR:
                 g.drawImage(spriteJugador[indexSprite], x, y, null);
@@ -94,6 +94,10 @@ public class Celda extends JComponent implements Constantes {
             case PASOPEATONAL:
                 break;
             case CUADRA:
+                g.setColor(BLUE);
+                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+                break;
+            case PASAJERO:
                 g.setColor(BLUE);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
