@@ -87,7 +87,6 @@ public class Jugador implements Constantes {
 
     public boolean noVieneVehiculo(int x, int y, char mov) {
         if (celdaMovimiento.tipoCelda == CAMINO) {
-            System.out.println("Esta en camino");
             switch (mov) {
                 case 'D':
                     if (x - 4 > 0 && x + 4 < N_CELDAS_ANCHO && y > 0 && y + 2 < N_CELDAS_ALTO) {

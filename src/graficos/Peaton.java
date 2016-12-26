@@ -1,7 +1,6 @@
 package graficos;
 
 import java.awt.Point;
-import java.util.TimerTask;
 
 public class Peaton implements Constantes {
 
@@ -9,16 +8,16 @@ public class Peaton implements Constantes {
     public Celda peaton, celdaMovimiento;
     public Point p1, p2, p3, p4;
 
-    public Peaton(Laberinto laberinto, Point xp, Point yp) {
+    public Peaton(Laberinto laberinto, Point xp, Point yp, Point ep) {
         p1 = new Point(xp.x, xp.y);
-        p2 = new Point(yp.x, xp.y);
-        p3 = new Point(yp.x, yp.y);
-        p4 = new Point(xp.x, yp.y);
+        p2= new Point(yp.x,xp.y);
+        p3= new Point(yp.x,yp.y);
+        p4= new Point(ep.x,ep.y);
         this.laberinto = laberinto;
-        celdaMovimiento = new Celda(p1.x, p1.y, laberinto.celdas[p1.x][p1.y].tipoCelda);
-        peaton = new Celda(p1.x, p1.y, PEATON);
+        celdaMovimiento = new Celda(this.p1.x, this.p1.y, laberinto.celdas[this.p1.x][this.p1.y].tipoCelda);
+        peaton = new Celda(this.p1.x, this.p1.y,PEATON);
     }
-
+    
     public void moverPeaton() {
         if (celdaMovimiento.x == p2.x && celdaMovimiento.y < p3.y && celdaMovimiento.y >= p2.y) {
             if (noHayPared(celdaMovimiento.x, celdaMovimiento.y + 1)) {
@@ -38,10 +37,19 @@ public class Peaton implements Constantes {
             }
         }
     }
-    
-   public void serCalle(){
-         laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y].tipoCelda = CALLE;
-   }
+
+    public void serCalleAbajo() {
+        char temp = celdaMovimiento.tipoCelda;
+        celdaMovimiento.tipoCelda = laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y + 1].tipoCelda;
+        laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y].tipoCelda = temp;
+    }
+
+    public void serCalleArriba() {
+        char temp = celdaMovimiento.tipoCelda;
+        celdaMovimiento.tipoCelda = laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y - 1].tipoCelda;
+        laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y].tipoCelda = temp;
+    }
+
     private void moverAbajo() {
         char temp = celdaMovimiento.tipoCelda;
         celdaMovimiento.tipoCelda = laberinto.celdas[celdaMovimiento.x][celdaMovimiento.y + 1].tipoCelda;
@@ -86,5 +94,3 @@ public class Peaton implements Constantes {
                 && laberinto.celdas[x][y].tipoCelda != JUGADOR;
     }
 }
-
-

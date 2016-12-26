@@ -9,7 +9,7 @@ public class Micro extends TimerTask implements Constantes {
 
     public Laberinto laberinto;
     public Celda auto, celdaMovimiento;
-    public Point p1, p2, p3, p4, a, b, c, d;
+    public Point p1, p2, p3, p4;
     ArrayList<Peaton> peatones = new ArrayList<>();
 
     public Micro(Laberinto laberinto, Point xp, Point yp) {
@@ -18,17 +18,13 @@ public class Micro extends TimerTask implements Constantes {
         p3 = new Point(yp.x, yp.y);
         p4 = new Point(xp.x, yp.y);
 
-        a = new Point(xp.x, xp.y);
-        b = new Point(yp.x, xp.y);
-        c = new Point(yp.x, yp.y);
-        d = new Point(xp.x, yp.y);
         this.laberinto = laberinto;
         celdaMovimiento = new Celda(p1.x, p1.y, laberinto.celdas[p1.x][p1.y].tipoCelda);
         auto = new Celda(p1.x, p1.y, MICRO);
 
         for (int i = 0; i < NPEATONES ; i++) {
-            xp.x = xp.x - 1;
-            peatones.add(new Peaton(laberinto, xp, yp));
+            xp.x = xp.x-1;
+            peatones.add(new Peaton(laberinto, xp, yp,p4));
         }
 
     }
@@ -42,7 +38,7 @@ public class Micro extends TimerTask implements Constantes {
                     } else {
            
                         JOptionPane.showMessageDialog(null, "Peaton ha sido dejado en la parada");
-                        peatones.get(peatones.size() - 1).serCalle();
+                        peatones.get(peatones.size() - 1).serCalleAbajo();
                         peatones.remove(peatones.get(peatones.size() - 1));
                     }
                 }
@@ -64,7 +60,7 @@ public class Micro extends TimerTask implements Constantes {
                         System.out.println("TODOS LOS PEATONES HAN SIDO DEJADOS");
                     } else {
                         JOptionPane.showMessageDialog(null, "Peaton ha sido dejado en la parada");
-                            peatones.get(peatones.size() - 1).serCalle();
+                           peatones.get(peatones.size() - 1).serCalleArriba();
                         peatones.remove(peatones.get(peatones.size() - 1));
                     }
                 }

@@ -88,16 +88,10 @@ public class Celda extends JComponent implements Constantes {
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
             case PARADA:
-                g.setColor(BLUE);
-                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
             case PASOPEATONAL:
                 break;
             case CUADRA:
-                g.setColor(BLUE);
-                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
-                break;
-            case PASAJERO:
                 g.setColor(BLUE);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
