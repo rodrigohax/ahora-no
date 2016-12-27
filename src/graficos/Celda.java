@@ -3,6 +3,8 @@ package graficos;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
 import static java.awt.Color.RED;
+import static java.awt.Color.WHITE;
+import static java.awt.Color.YELLOW;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,7 +22,7 @@ public class Celda extends JComponent implements Constantes {
     public BufferedImage[] spriteJugador, spriteVehiculo;
     //nuevos atributos para manejar imagenes
     public BufferedImage jugador, obstaculo, camino, vehiculo, portal;
-    public BufferedImage edificio, acera, carretera, peaton;
+    public BufferedImage edificio, acera, carretera, peaton, carta;
     public int nPeatones;
 
     //constructor, inicializa los atributos
@@ -39,6 +41,7 @@ public class Celda extends JComponent implements Constantes {
             carretera = ImageIO.read(new File("images/carretera.png"));
             peaton = ImageIO.read(new File("images/peaton.png"));
             jugador = ImageIO.read(new File("images/jugador.png"));
+            carta = ImageIO.read(new File("images/carta.png"));
 
             spriteJugador = cargarSprite(jugador, 2, 2);
             spriteVehiculo = cargarSprite(vehiculo, 2, 2);
@@ -60,6 +63,9 @@ public class Celda extends JComponent implements Constantes {
         switch (tipoCelda) {
             case JUGADOR:
                 g.drawImage(spriteJugador[indexSprite], x, y, null);
+                for (int i = 0; i < Jugador.nCartas; i++) {
+                    g.drawImage(carta, x - 25 + i * 25, y - 25, this);
+                }
                 break;
             case OBSTACULO:
                 g.drawImage(obstaculo, x, y, this);
@@ -80,7 +86,7 @@ public class Celda extends JComponent implements Constantes {
                 // g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
             case PORTAL:
-                g.setColor(COLORAMARILLO);
+                g.setColor(YELLOW);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
             case MICRO:
@@ -95,6 +101,12 @@ public class Celda extends JComponent implements Constantes {
                 g.setColor(BLUE);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
+            case CARTA:
+                g.setColor(WHITE);
+                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+            case PARED:
+                g.setColor(WHITE);
+                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
         }
     }
 

@@ -2,23 +2,23 @@ package graficos;
 
 import static graficos.Constantes.N_CELDAS_ALTO;
 import static graficos.Constantes.N_CELDAS_ANCHO;
-import static graficos.Constantes.TAMANIO_CELDA;
 import inteligencia.Busqueda;
 import java.awt.event.KeyEvent;
-import java.util.TimerTask;
 
 public class Jugador implements Constantes {
 
     public Laberinto laberinto;
     public Celda jugador, celdaMovimiento;
     public Busqueda inteligencia;
+    public static int nCartas;
 
     public Jugador(Laberinto laberinto) {
         this.laberinto = laberinto;
-        celdaMovimiento = new Celda(0, 0, laberinto.celdas[0][0].tipoCelda);
-        jugador = new Celda(0, 0, JUGADOR);
+        celdaMovimiento = new Celda(8, 2, laberinto.celdas[8][2].tipoCelda);
+        jugador = new Celda(8, 2, JUGADOR);
         laberinto.celdas[jugador.x][jugador.y].tipoCelda = JUGADOR;
         inteligencia = new Busqueda(laberinto);
+        nCartas = NCARTAS;
     }
 
     void moverCelda(KeyEvent evento) {
@@ -42,36 +42,44 @@ public class Jugador implements Constantes {
         }
     }
 
-    public void moverCeldaArriba() {
+    public boolean moverCeldaArriba() {
         if (jugador.y > 0) {
             if (noHayPared(jugador.x, jugador.y - 1) && noVieneVehiculo(jugador.x, jugador.y, 'U')) {
                 avanzar(jugador.x, jugador.y - 1, 'U');
+                return true;
             }
         }
+        return false;
     }
 
-    public void moverCeldaAbajo() {
+    public boolean moverCeldaAbajo() {
         if (jugador.y + 1 < N_CELDAS_ALTO - 1) {
             if (noHayPared(jugador.x, jugador.y + 1) && noVieneVehiculo(jugador.x, jugador.y, 'D')) {
                 avanzar(jugador.x, jugador.y + 1, 'D');
+                return true;
             }
         }
+        return false;
     }
 
-    public void moverCeldaIzquierda() {
+    public boolean moverCeldaIzquierda() {
         if (jugador.x > 0) {
             if (noHayPared(jugador.x - 1, jugador.y) && noVieneVehiculo(jugador.x, jugador.y, 'L')) {
                 avanzar(jugador.x - 1, jugador.y, 'L');
+                return true;
             }
         }
+        return false;
     }
 
-    public void moverCeldaDerecha() {
+    public boolean moverCeldaDerecha() {
         if (jugador.x + 1 < N_CELDAS_ANCHO - 1) {
             if (noHayPared(jugador.x + 1, jugador.y) && noVieneVehiculo(jugador.x, jugador.y, 'R')) {
                 avanzar(jugador.x + 1, jugador.y, 'R');
+                return true;
             }
         }
+        return false;
     }
 
     public boolean noHayPared(int x, int y) {

@@ -22,9 +22,9 @@ public class Micro extends TimerTask implements Constantes {
         celdaMovimiento = new Celda(p1.x, p1.y, laberinto.celdas[p1.x][p1.y].tipoCelda);
         auto = new Celda(p1.x, p1.y, MICRO);
 
-        for (int i = 0; i < NPEATONES ; i++) {
-            xp.x = xp.x-1;
-            peatones.add(new Peaton(laberinto, xp, yp,p4));
+        for (int i = 0; i < NPEATONES; i++) {
+            xp.x = xp.x - 1;
+            peatones.add(new Peaton(laberinto, xp, yp, p4));
         }
 
     }
@@ -34,10 +34,7 @@ public class Micro extends TimerTask implements Constantes {
             if (noHayPersona(celdaMovimiento.x, celdaMovimiento.y + 1)) {
                 if (esParada(celdaMovimiento.x + 1, celdaMovimiento.y + 1)) {
                     if (peatones.size() <= 0) {
-                        System.out.println("TODOS LOS PEATONES HAN SIDO DEJADOS");
                     } else {
-           
-                        JOptionPane.showMessageDialog(null, "Peaton ha sido dejado en la parada");
                         peatones.get(peatones.size() - 1).serCalleAbajo();
                         peatones.remove(peatones.get(peatones.size() - 1));
                     }
@@ -57,10 +54,8 @@ public class Micro extends TimerTask implements Constantes {
                 moverArriba();
                 if (esParada(celdaMovimiento.x + 1, celdaMovimiento.y - 1)) {
                     if (peatones.size() <= 0) {
-                        System.out.println("TODOS LOS PEATONES HAN SIDO DEJADOS");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Peaton ha sido dejado en la parada");
-                           peatones.get(peatones.size() - 1).serCalleArriba();
+                        peatones.get(peatones.size() - 1).serCalleArriba();
                         peatones.remove(peatones.get(peatones.size() - 1));
                     }
                 }

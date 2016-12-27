@@ -18,22 +18,18 @@ public interface Constantes {
     public final char VEHICULO = 'H';
     public final char PORTAL = 'R';
     //nuevas constantes
-    public final char CUADRA= 'E';    
+    public final char CUADRA = 'E';
     public final char PEATON = 'P';
     public final char CALLE = 'C';
     public final char MICRO = 'X';
     public final char PARADA = 'Y';
+    public final char CARTA = 'I';
     public final char PASOPEATONAL = 'Z';
-    public final int NPEATONES = 10;
     public final int PASAJERO = 'A';
+    public final int PARED = 'T';
     
-    public final int ALFA = 150;
-    public final Color COLORGRIS = new Color(192, 192, 192, ALFA);
-    public final Color COLORAMARILLO = new Color(255, 255, 128, ALFA);
+    public final int NPEATONES = 10;
+    public final int NPORTALES = 3;
+    public final int NCARTAS = 3;
 
-    default int numeroAleatorio(int minimo, int maximo) {
-        Random random = new Random();
-        int numero_aleatorio = random.nextInt((maximo - minimo) + 1) + minimo;
-        return numero_aleatorio;
-    }
 }
