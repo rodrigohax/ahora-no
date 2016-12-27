@@ -2,6 +2,8 @@ package graficos;
 
 import inteligencia.Estado;
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -58,7 +60,7 @@ public class Lienzo extends Canvas implements Constantes {
       lanzadorTareas.scheduleAtFixedRate(micro, 0, 100);
 //        lanzadorTareas.scheduleAtFixedRate(peaton2,0,400);
 
-        jugador.inteligencia.buscar(0, 0, 26, 3);
+        jugador.inteligencia.buscar(0, 0, 10, 5);
         jugador.inteligencia.calcularRuta();
         lanzadorTareas.scheduleAtFixedRate(jugador.inteligencia, 0, 100);
 
@@ -77,6 +79,31 @@ public class Lienzo extends Canvas implements Constantes {
         laberinto.update(graficoBuffer);
         //pintamos la imagen previa
         g.drawImage(imagenBuffer, 0, 0, null);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+        g.drawString("N° Peatones:\n" + laberinto.celdas[3][4].nPeatones, laberinto.celdas[3][4].x, laberinto.celdas[3][4].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[9][4].nPeatones, laberinto.celdas[9][4].x, laberinto.celdas[9][4].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[15][4].nPeatones, laberinto.celdas[15][4].x, laberinto.celdas[15][4].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[21][4].nPeatones, laberinto.celdas[21][4].x, laberinto.celdas[21][4].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[27][4].nPeatones, laberinto.celdas[27][4].x, laberinto.celdas[27][4].y);
+
+        g.drawString("N° Peatones:\n" + laberinto.celdas[3][10].nPeatones, laberinto.celdas[3][10].x, laberinto.celdas[3][10].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[9][10].nPeatones, laberinto.celdas[9][10].x, laberinto.celdas[9][10].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[15][10].nPeatones, laberinto.celdas[15][10].x, laberinto.celdas[15][10].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[21][10].nPeatones, laberinto.celdas[21][10].x, laberinto.celdas[21][10].y);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[27][10].nPeatones, laberinto.celdas[27][10].x, laberinto.celdas[27][10].y);
+
+        g.drawString("N° Peatones:\n" + laberinto.celdas[3][1].nPeatones, laberinto.celdas[3][1].x, laberinto.celdas[3][1].y - 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[9][1].nPeatones, laberinto.celdas[9][1].x, laberinto.celdas[9][1].y - 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[15][1].nPeatones, laberinto.celdas[15][1].x, laberinto.celdas[15][1].y - 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[21][1].nPeatones, laberinto.celdas[21][1].x, laberinto.celdas[21][1].y - 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[27][1].nPeatones, laberinto.celdas[27][1].x, laberinto.celdas[27][1].y - 10);
+
+        g.drawString("N° Peatones:\n" + laberinto.celdas[3][14].nPeatones, laberinto.celdas[3][14].x, laberinto.celdas[3][14].y + 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[9][14].nPeatones, laberinto.celdas[9][14].x, laberinto.celdas[9][14].y + 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[15][14].nPeatones, laberinto.celdas[15][14].x, laberinto.celdas[15][14].y + 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[21][14].nPeatones, laberinto.celdas[21][14].x, laberinto.celdas[21][14].y + 10);
+        g.drawString("N° Peatones:\n" + laberinto.celdas[27][14].nPeatones, laberinto.celdas[27][14].x, laberinto.celdas[27][14].y + 10);
     }
 
     @Override

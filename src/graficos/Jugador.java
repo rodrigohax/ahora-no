@@ -14,8 +14,8 @@ public class Jugador implements Constantes {
 
     public Jugador(Laberinto laberinto) {
         this.laberinto = laberinto;
-        celdaMovimiento = new Celda(8, 2, laberinto.celdas[8][2].tipoCelda);
-        jugador = new Celda(8, 2, JUGADOR);
+        celdaMovimiento = new Celda(0, 0, laberinto.celdas[0][0].tipoCelda);
+        jugador = new Celda(0, 0, JUGADOR);
         laberinto.celdas[jugador.x][jugador.y].tipoCelda = JUGADOR;
         inteligencia = new Busqueda(laberinto);
         nCartas = NCARTAS;

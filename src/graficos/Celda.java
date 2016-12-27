@@ -1,10 +1,12 @@
 package graficos;
 
+import java.awt.Color;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
 import static java.awt.Color.RED;
 import static java.awt.Color.WHITE;
 import static java.awt.Color.YELLOW;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -64,6 +66,9 @@ public class Celda extends JComponent implements Constantes {
             case JUGADOR:
                 g.drawImage(spriteJugador[indexSprite], x, y, null);
                 for (int i = 0; i < Jugador.nCartas; i++) {
+                    g.setColor(Color.black);
+                    g.setFont(new Font("TimesRoman", Font.BOLD, 12));
+                    g.drawString(Integer.toString(i+1), x - 25 + i * 25, y - 25);
                     g.drawImage(carta, x - 25 + i * 25, y - 25, this);
                 }
                 break;
