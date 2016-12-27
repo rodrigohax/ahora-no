@@ -1,11 +1,10 @@
 package graficos;
 
+import static graficos.Jugador.portales;
 import java.awt.Color;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.GREEN;
-import static java.awt.Color.RED;
 import static java.awt.Color.WHITE;
-import static java.awt.Color.YELLOW;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -13,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+
 
 public class Celda extends JComponent implements Constantes {
 
@@ -61,7 +61,6 @@ public class Celda extends JComponent implements Constantes {
 
     @Override
     public void update(Graphics g) {
-        //   g.drawString(Integer.toString(nPeatones), x + 10, y + 10);
         switch (tipoCelda) {
             case JUGADOR:
                 g.drawImage(spriteJugador[indexSprite], x, y, null);
@@ -91,8 +90,9 @@ public class Celda extends JComponent implements Constantes {
                 // g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
                 break;
             case PORTAL:
-                g.setColor(YELLOW);
-                g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+                g.setColor(Color.blue);
+                g.drawOval(x, y, TAMANIO_CELDA, TAMANIO_CELDA+10);
+                g.setColor(Color.BLACK);
                 break;
             case MICRO:
                 g.setColor(GREEN);

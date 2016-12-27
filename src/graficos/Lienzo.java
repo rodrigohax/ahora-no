@@ -1,5 +1,6 @@
 package graficos;
 
+import static graficos.Jugador.portales;
 import inteligencia.Estado;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -11,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import javax.imageio.ImageIO;
 
@@ -27,9 +29,11 @@ public class Lienzo extends Canvas implements Constantes {
 
     public Graphics graficoBuffer;
     public Image imagenBuffer;
+     public ArrayList<Portal> portales;
 
     public Lienzo() {
         laberinto = new Laberinto(this);
+        portales = new ArrayList<>();
 //        auto = new Vehiculo(laberinto, 29, 1);
 //        auto2 = new Vehiculo(laberinto, new Point(7, 1), new Point(13, 7));
 //        auto3 = new Vehiculo(laberinto, new Point(1, 13), new Point(7, 1));
@@ -52,12 +56,23 @@ public class Lienzo extends Canvas implements Constantes {
                 laberinto.lienzoPadre.repaint();
             }
         });
+
+        for (int i = 4; i < 30; i = i + 6) {
+            crearPortal(i, 5);
+
+        }
+
+        for (int i = 4; i < 30; i = i + 6) {
+            crearPortal(i, 11);
+
+        }
+
         lanzadorTareas = new Timer();
-    //    lanzadorTareas.scheduleAtFixedRate(auto, 0, 100);
+        //    lanzadorTareas.scheduleAtFixedRate(auto, 0, 100);
 //        lanzadorTareas.scheduleAtFixedRate(auto2, 0, 100);
-       // lanzadorTareas.scheduleAtFixedRate(auto3, 0, 1300);
+        // lanzadorTareas.scheduleAtFixedRate(auto3, 0, 1300);
         //lanzadorTareas.scheduleAtFixedRate(auto4, 0, 1300);
-      lanzadorTareas.scheduleAtFixedRate(micro, 0, 100);
+        lanzadorTareas.scheduleAtFixedRate(micro, 0, 100);
 //        lanzadorTareas.scheduleAtFixedRate(peaton2,0,400);
 
         jugador.inteligencia.buscar(0, 0, 10, 5);
@@ -109,5 +124,9 @@ public class Lienzo extends Canvas implements Constantes {
     @Override
     public void paint(Graphics g) {
         update(g);
+    }
+
+    private void crearPortal(int x, int y) {
+        portales.add(new Portal(laberinto, x, y));
     }
 }

@@ -60,13 +60,6 @@ public class Laberinto extends JComponent implements Constantes {
             celdas[i][13].tipoCelda = CALLE;
         }
 
-        for (int i = 4; i < 30; i = i + 6) {
-            celdas[i][5].tipoCelda = PORTAL;
-        }
-
-        for (int i = 4; i < 30; i = i + 6) {
-            celdas[i][11].tipoCelda = PORTAL;
-        }
 
 
         /*
