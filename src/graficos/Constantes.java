@@ -26,10 +26,11 @@ public interface Constantes {
     public final char CARTA = 'I';
     public final char PASOPEATONAL = 'Z';
     public final int PASAJERO = 'A';
-    public final int PARED = 'T';
+    public final char LADRON = 'T';
     
     public final int NPEATONES = 10;
-    public final int NPORTALES = 3;
-    public final int NCARTAS = 3;
+    public final int NPORTALES = 2;
+    public final int NCARTAS = 5;
+    public final int TRAFICO = 100;
 
 }

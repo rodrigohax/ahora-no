@@ -1,6 +1,5 @@
 package graficos;
 
-import static graficos.Jugador.portales;
 import inteligencia.Estado;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -25,22 +24,24 @@ public class Lienzo extends Canvas implements Constantes {
     public Micro micro;
     public Peaton peaton, peaton2;
     public Jugador jugador;
+    public Ladron ladron;
     public Timer lanzadorTareas;
 
     public Graphics graficoBuffer;
     public Image imagenBuffer;
-     public ArrayList<Portal> portales;
+    public ArrayList<Portal> portales;
 
     public Lienzo() {
         laberinto = new Laberinto(this);
         portales = new ArrayList<>();
-//        auto = new Vehiculo(laberinto, 29, 1);
-//        auto2 = new Vehiculo(laberinto, new Point(7, 1), new Point(13, 7));
+        // auto = new Vehiculo(laberinto, 29, 1);
+        //   auto2 = new Vehiculo(laberinto, new Point(7, 1), new Point(13, 7));
 //        auto3 = new Vehiculo(laberinto, new Point(1, 13), new Point(7, 1));
 //        auto4 = new Vehiculo(laberinto, new Point(6, 5), new Point(4, 4));
 
         micro = new Micro(laberinto, new Point(19, 1), new Point(25, 13));
-        jugador = new Jugador(laberinto);
+        jugador = new Jugador(laberinto, 0, 0);
+   //     ladron = new Ladron(laberinto, 4, 4, jugador);
 
         try {
             fondo = ImageIO.read(new File("images/fondo.png"));
@@ -59,7 +60,6 @@ public class Lienzo extends Canvas implements Constantes {
 
         for (int i = 4; i < 30; i = i + 6) {
             crearPortal(i, 5);
-
         }
 
         for (int i = 4; i < 30; i = i + 6) {
@@ -68,16 +68,23 @@ public class Lienzo extends Canvas implements Constantes {
         }
 
         lanzadorTareas = new Timer();
-        //    lanzadorTareas.scheduleAtFixedRate(auto, 0, 100);
-//        lanzadorTareas.scheduleAtFixedRate(auto2, 0, 100);
-        // lanzadorTareas.scheduleAtFixedRate(auto3, 0, 1300);
-        //lanzadorTareas.scheduleAtFixedRate(auto4, 0, 1300);
-        lanzadorTareas.scheduleAtFixedRate(micro, 0, 100);
+//        lanzadorTareas.scheduleAtFixedRate(auto, 0, 100);
+        //     lanzadorTareas.scheduleAtFixedRate(auto2, 0, 100);
+        //   lanzadorTareas.scheduleAtFixedRate(auto3, 0, 1300);
+        //  lanzadorTareas.scheduleAtFixedRate(auto4, 0, 1300);
+        lanzadorTareas.scheduleAtFixedRate(micro, 0, 1000);
 //        lanzadorTareas.scheduleAtFixedRate(peaton2,0,400);
 
-        jugador.inteligencia.buscar(0, 0, 10, 5);
-        jugador.inteligencia.calcularRuta();
-        lanzadorTareas.scheduleAtFixedRate(jugador.inteligencia, 0, 100);
+        jugador.inteligencia.destinos.add(new Estado(4, 5, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(10, 5, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(4, 5, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(16, 5, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(28, 11, 'N', null));
+        jugador.inteligencia.destinos.add(new Estado(2, 2, 'N', null));
+
+      //  ladron.inteligencia.destinos.add(new Estado(jugador.celdaMovimiento.x, jugador.celdaMovimiento.y, 'N', null));
+       lanzadorTareas.scheduleAtFixedRate(jugador.inteligencia, 0, 1000);
+//        lanzadorTareas.scheduleAtFixedRate(ladron.inteligencia, 0, 100);
 
     }
 
@@ -119,6 +126,10 @@ public class Lienzo extends Canvas implements Constantes {
         g.drawString("N° Peatones:\n" + laberinto.celdas[15][14].nPeatones, laberinto.celdas[15][14].x, laberinto.celdas[15][14].y + 10);
         g.drawString("N° Peatones:\n" + laberinto.celdas[21][14].nPeatones, laberinto.celdas[21][14].x, laberinto.celdas[21][14].y + 10);
         g.drawString("N° Peatones:\n" + laberinto.celdas[27][14].nPeatones, laberinto.celdas[27][14].x, laberinto.celdas[27][14].y + 10);
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("TimesRoman", Font.BOLD, 15));
+        g.drawString("Trafico:\n" + laberinto.celdas[19][7].nPeatones, laberinto.celdas[19][7].x - 128, laberinto.celdas[19][7].y + 12);
     }
 
     @Override

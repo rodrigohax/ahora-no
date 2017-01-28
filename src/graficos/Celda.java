@@ -109,7 +109,7 @@ public class Celda extends JComponent implements Constantes {
             case CARTA:
                 g.setColor(WHITE);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
-            case PARED:
+            case LADRON:
                 g.setColor(WHITE);
                 g.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
         }
@@ -129,4 +129,14 @@ public class Celda extends JComponent implements Constantes {
         }
         return sprite;
     }
+    
+    public boolean puedeMoverse() {
+        switch(tipoCelda){
+            case PORTAL: return true;
+            case CAMINO: return true;
+            case PASOPEATONAL: return true;         
+            default: return false;   
+        }
+    }
+
 }

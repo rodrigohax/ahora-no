@@ -2,10 +2,10 @@ package graficos;
 
 import static graficos.Constantes.N_CELDAS_ALTO;
 import static graficos.Constantes.N_CELDAS_ANCHO;
-import inteligencia.Busqueda;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import inteligencia.Busqueda;
 
 public class Jugador implements Constantes {
 
@@ -15,13 +15,13 @@ public class Jugador implements Constantes {
     public static int nCartas;
     public static ArrayList<Portal> portales;
 
-    public Jugador(Laberinto laberinto) {
+    public Jugador(Laberinto laberinto, int x, int y) {
         this.laberinto = laberinto;
         portales = laberinto.lienzoPadre.portales;
-        celdaMovimiento = new Celda(0, 0, laberinto.celdas[0][0].tipoCelda);
-        jugador = new Celda(0, 0, JUGADOR);
+        celdaMovimiento = new Celda(x, y, laberinto.celdas[x][y].tipoCelda);
+        jugador = new Celda(x, y, JUGADOR);
         laberinto.celdas[jugador.x][jugador.y].tipoCelda = JUGADOR;
-        inteligencia = new Busqueda(laberinto);
+        inteligencia = new Busqueda(laberinto, this);
         nCartas = NCARTAS;
     }
 
@@ -90,7 +90,8 @@ public class Jugador implements Constantes {
         return laberinto.celdas[x][y].tipoCelda != OBSTACULO
                 && laberinto.celdas[x][y].tipoCelda != VEHICULO
                 && laberinto.celdas[x][y].tipoCelda != PEATON
-                && laberinto.celdas[x][y].tipoCelda != CALLE;
+                && laberinto.celdas[x][y].tipoCelda != CALLE
+                && laberinto.celdas[x][y].tipoCelda != MICRO;
     }
 
     public boolean esPortal(int x, int y) {

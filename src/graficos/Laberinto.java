@@ -32,35 +32,41 @@ public class Laberinto extends JComponent implements Constantes {
 
         for (int i = 0; i < 15; i++) {
             celdas[1][i].tipoCelda = CALLE;
+            celdas[1][i].nPeatones = TRAFICO;
         }
 
         for (int i = 0; i < 15; i++) {
             celdas[7][i].tipoCelda = CALLE;
+            celdas[7][i].nPeatones = TRAFICO;
         }
 
         for (int i = 0; i < 15; i++) {
             celdas[13][i].tipoCelda = CALLE;
+            celdas[13][i].nPeatones = TRAFICO;
         }
         for (int i = 0; i < 15; i++) {
             celdas[19][i].tipoCelda = CALLE;
+            celdas[19][i].nPeatones = TRAFICO;
         }
         for (int i = 0; i < 15; i++) {
             celdas[25][i].tipoCelda = CALLE;
+            celdas[25][i].nPeatones = TRAFICO;
         }
 
         for (int i = 0; i < 30; i++) {
             celdas[i][1].tipoCelda = CALLE;
+            celdas[i][1].nPeatones = TRAFICO;
         }
 
         for (int i = 0; i < 30; i++) {
             celdas[i][7].tipoCelda = CALLE;
+            celdas[i][7].nPeatones = TRAFICO;
         }
 
         for (int i = 0; i < 30; i++) {
             celdas[i][13].tipoCelda = CALLE;
+            celdas[i][13].nPeatones = TRAFICO;
         }
-
-
 
         /*
         PASOS PEATONALES HORIZONTALES

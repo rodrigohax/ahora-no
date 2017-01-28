@@ -1,19 +1,21 @@
 package inteligencia;
 
 import graficos.Constantes;
+import static graficos.Constantes.N_CELDAS_ALTO;
+import static graficos.Constantes.N_CELDAS_ANCHO;
 import graficos.Jugador;
 import graficos.Laberinto;
+import graficos.Ladron;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 
-
-public class Busqueda extends TimerTask implements Constantes {
+public class BusquedaLadron extends TimerTask implements Constantes {
 
     public Laberinto laberinto;
-    public Jugador jugador;
+    public Ladron ladron;
     public ArrayList<Estado> colaEstados;
     public ArrayList<Estado> historial;
     public ArrayList<Character> pasos;
@@ -25,10 +27,12 @@ public class Busqueda extends TimerTask implements Constantes {
     public Estado temp;
     public boolean exito;
     public boolean parar;
-    
-    public Busqueda(Laberinto laberinto, Jugador jugador) {
+    public Jugador jugador;
+
+    public BusquedaLadron(Laberinto laberinto, Ladron ladron) {
         this.laberinto = laberinto;
-        this.jugador = jugador;
+        this.jugador = laberinto.lienzoPadre.jugador;
+        this.ladron = ladron;
         colaEstados = new ArrayList<>();
         historial = new ArrayList<>();
         pasos = new ArrayList<>();
@@ -37,22 +41,22 @@ public class Busqueda extends TimerTask implements Constantes {
         exito = false;
         parar = false;
     }
-    
+
     public boolean buscar(Estado inicial, Estado objetivo) {
-        
+
         index_pasos = 0;
         colaEstados.add(inicial);
         historial.add(inicial);
         this.objetivo = objetivo;
         exito = false;
-        
+
         if (inicial.equals(objetivo)) {
             exito = true;
         }
 
         while (!colaEstados.isEmpty() && !exito) {
             //temp = colaEstados.poll();
-            temp=colaEstados.get(0);
+            temp = colaEstados.get(0);
             colaEstados.remove(0);
             moverArriba(temp);
             moverAbajo(temp);
@@ -85,7 +89,7 @@ public class Busqueda extends TimerTask implements Constantes {
         if (e.y > 0) {
             if (laberinto.celdas[e.x][e.y - 1].puedeMoverse()) {
                 Estado arriba = new Estado(e.x, e.y - 1, 'U', e);
- //              arriba.prioridad = laberinto.celdas[e.x][e.y - 1].npeatones;
+                //              arriba.prioridad = laberinto.celdas[e.x][e.y - 1].npeatones;
                 if (!historial.contains(arriba)) {
                     colaEstados.add(arriba);
                     historial.add(arriba);
@@ -103,7 +107,7 @@ public class Busqueda extends TimerTask implements Constantes {
         if (e.y + 1 < N_CELDAS_ALTO) {
             if (laberinto.celdas[e.x][e.y + 1].puedeMoverse()) {
                 Estado abajo = new Estado(e.x, e.y + 1, 'D', e);
-  //              abajo.prioridad = laberinto.celdas[e.x][e.y + 1].npeatones;
+                //              abajo.prioridad = laberinto.celdas[e.x][e.y + 1].npeatones;
                 if (!historial.contains(abajo)) {
                     colaEstados.add(abajo);
                     historial.add(abajo);
@@ -142,7 +146,7 @@ public class Busqueda extends TimerTask implements Constantes {
         if (e.x < N_CELDAS_ANCHO - 1) {
             if (laberinto.celdas[e.x + 1][e.y].puedeMoverse()) {
                 Estado derecha = new Estado(e.x + 1, e.y, 'R', e);
-   //             derecha.prioridad = laberinto.celdas[e.x + 1][e.y].npeatones;
+                //             derecha.prioridad = laberinto.celdas[e.x + 1][e.y].npeatones;
 
                 if (!historial.contains(derecha)) {
                     colaEstados.add(derecha);
@@ -177,7 +181,7 @@ public class Busqueda extends TimerTask implements Constantes {
             Estado subinicial, subobjetivo;
             boolean resultado;
             do {
-                subinicial = new Estado(jugador.jugador.x, jugador.jugador.y, 'N', null);
+                subinicial = new Estado(ladron.ladron.x, ladron.ladron.y, 'N', null);
                 subobjetivo = destinos.get(0);
                 resultado = this.buscar(subinicial, subobjetivo);
 
@@ -202,24 +206,24 @@ public class Busqueda extends TimerTask implements Constantes {
             if (pasos.size() > 1) {
                 switch (pasos.get(1)) {
                     case 'D':
-                        jugador.moverCeldaAbajo();
+                        ladron.moverCeldaAbajo();
                         break;
                     case 'U':
-                        jugador.moverCeldaArriba();
+                        ladron.moverCeldaArriba();
                         break;
                     case 'R':
-                        jugador.moverCeldaDerecha();
+                        ladron.moverCeldaDerecha();
                         break;
                     case 'L':
-                        jugador.moverCeldaIzquierda();
+                        ladron.moverCeldaIzquierda();
                         break;
                 }
                 laberinto.lienzoPadre.repaint();
             }
         }
-        */
+         */
         //Multiobjetivo
-               
+
         if (!parar) {
 
             colaEstados.clear();
@@ -230,8 +234,8 @@ public class Busqueda extends TimerTask implements Constantes {
             boolean resultado;
 
             do {
-                subinicial = new Estado(jugador.jugador.x,
-                        jugador.jugador.y, 'N', null);
+                subinicial = new Estado(ladron.ladron.x,
+                        ladron.ladron.y, 'N', null);
 
                 subobjetivo = destinos.get(0);
                 resultado = this.buscar(subinicial, subobjetivo);
@@ -257,19 +261,18 @@ public class Busqueda extends TimerTask implements Constantes {
             if (pasos.size() > 1) {
                 switch (pasos.get(1)) {
                     case 'D':
-                        jugador.moverCeldaAbajo();
+                        ladron.moverCeldaAbajo();
                         break;
                     case 'U':
-                        jugador.moverCeldaArriba();
+                        ladron.moverCeldaArriba();
                         break;
                     case 'R':
-                        jugador.moverCeldaDerecha();
+                        ladron.moverCeldaDerecha();
                         break;
                     case 'L':
-                        jugador.moverCeldaIzquierda();
+                        ladron.moverCeldaIzquierda();
                         break;
                 }
-
                 laberinto.lienzoPadre.repaint();
 
             }
